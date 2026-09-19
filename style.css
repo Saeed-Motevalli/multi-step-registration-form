@@ -1,0 +1,1366 @@
+/* =========================================
+   1. RESET & GLOBAL STYLES
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #eff6ff;
+
+  --text-color: #1e293b;
+  --text-light: #64748b;
+
+  --border-color: #cbd5e1;
+  --error-color: #ef4444;
+  --success-color: #22c55e;
+
+  --background-color: #f1f5f9;
+  --white: #ffffff;
+
+  --border-radius: 12px;
+  --transition: 0.3s ease;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 18px;
+}
+
+/* =========================================
+   2. MAIN CONTAINER
+========================================= */
+
+.form-container {
+  width: 100%;
+  max-width: 560px;
+}
+
+.form-card {
+  position: relative;
+
+  width: 100%;
+
+  background-color: var(--white);
+
+  border-radius: 14px;
+
+  padding: 24px 24px 18px;
+
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.1),
+    0 5px 15px rgba(15, 23, 42, 0.05);
+
+  overflow: hidden;
+}
+
+/* =========================================
+   3. HEADER
+========================================= */
+
+.form-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+/* =========================================
+   4. PROGRESS INDICATOR
+========================================= */
+
+.progress-container {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+
+  margin-bottom: 22px;
+}
+
+.progress-step {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+.progress-circle {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  border: 2px solid var(--border-color);
+
+  background-color: var(--white);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-light);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: var(--transition);
+
+  z-index: 2;
+}
+
+.progress-circle i {
+  display: none;
+  font-size: 14px;
+}
+
+.progress-label {
+  margin-top: 10px;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  color: var(--text-light);
+
+  white-space: nowrap;
+
+  transition: var(--transition);
+}
+
+/* Active Step */
+
+.progress-step.active .progress-circle {
+  background-color: var(--primary-color);
+
+  border-color: var(--primary-color);
+
+  color: var(--white);
+
+  box-shadow: 0 0 0 5px var(--primary-light);
+}
+
+.progress-step.active .progress-label {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Completed Step */
+
+.progress-step.completed .progress-circle {
+  background-color: var(--primary-color);
+
+  border-color: var(--primary-color);
+
+  color: var(--white);
+}
+
+.progress-step.completed .progress-circle span {
+  display: none;
+}
+
+.progress-step.completed .progress-circle i {
+  display: block;
+}
+
+.progress-step.completed .progress-label {
+  color: var(--primary-color);
+}
+
+/* Progress Line */
+
+.progress-line {
+  height: 2px;
+
+  flex: 1;
+
+  background-color: var(--border-color);
+
+  margin-top: 19px;
+
+  transition: var(--transition);
+}
+
+.progress-line.completed {
+  background-color: var(--primary-color);
+}
+
+/* =========================================
+   5. FORM STEPS
+========================================= */
+
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+
+  animation: slideIn 0.4s ease;
+}
+
+.form-step.slide-out {
+  animation: slideOut 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-35px);
+  }
+}
+
+/* =========================================
+   6. STEP HEADER
+========================================= */
+
+.step-header {
+  margin-bottom: 18px;
+}
+
+.step-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+
+  color: var(--text-color);
+}
+
+/* =========================================
+   7. INPUT GROUP
+========================================= */
+
+.input-group {
+  position: relative;
+
+  width: 100%;
+
+  margin-bottom: 16px;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  height: 50px;
+
+  padding: 16px 14px 6px;
+
+  border: 1.5px solid var(--border-color);
+
+  border-radius: var(--border-radius);
+
+  background-color: var(--white);
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  color: var(--text-color);
+
+  transition: var(--transition);
+}
+
+/* Input Focus */
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--primary-color);
+
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* =========================================
+   8. FLOATING LABEL
+========================================= */
+
+.input-group label {
+  position: absolute;
+
+  left: 16px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  padding: 0 4px;
+
+  background-color: var(--white);
+
+  color: var(--text-light);
+
+  font-size: 15px;
+
+  pointer-events: none;
+
+  transition: var(--transition);
+}
+
+/* Label when focused */
+
+.input-group input:focus + label {
+  top: 0;
+
+  transform: translateY(-50%);
+
+  color: var(--primary-color);
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+/* Label when input contains value */
+
+.input-group input:not(:placeholder-shown) + label {
+  top: 0;
+
+  transform: translateY(-50%);
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+/* Date Input */
+
+.input-group input[type="date"] {
+  padding-top: 20px;
+}
+
+.input-group input[type="date"] + label {
+  top: 0;
+
+  transform: translateY(-50%);
+
+  font-size: 12px;
+}
+
+/* =========================================
+   9. SELECT
+========================================= */
+
+.select-group {
+  position: relative;
+}
+
+.select-group select {
+  display: none;
+}
+
+.country-select {
+  position: relative;
+}
+
+.country-select-trigger {
+  width: 100%;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 16px 42px 6px 14px;
+
+  border: 1.5px solid #dbeafe;
+  border-radius: var(--border-radius);
+
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 14px;
+  text-align: left;
+
+  cursor: pointer;
+
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: var(--transition);
+}
+
+.country-select-trigger:hover,
+.country-select-trigger:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.country-select-trigger i {
+  color: var(--primary-color);
+  font-size: 12px;
+  transition: var(--transition);
+}
+
+.country-select.active .country-select-trigger i {
+  transform: rotate(180deg);
+}
+
+.country-options {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  right: 0;
+
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+
+  background: var(--white);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.12),
+    0 8px 18px rgba(15, 23, 42, 0.06);
+
+  display: none;
+  z-index: 40;
+  max-height: 230px;
+  overflow-y: auto;
+}
+
+.country-select.active .country-options {
+  display: block;
+}
+
+.country-option {
+  list-style: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--text-color);
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.country-option:hover,
+.country-option.is-selected {
+  background: var(--primary-light);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.select-group label {
+  top: 0;
+
+  transform: translateY(-50%);
+
+  font-size: 12px;
+}
+
+/* =========================================
+   10. ERROR STATE
+========================================= */
+
+.input-group.error input,
+.input-group.error select {
+  border-color: var(--error-color);
+
+  box-shadow: none;
+}
+
+.input-group.error input:focus,
+.input-group.error select:focus {
+  border-color: var(--error-color);
+
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.input-group.error label {
+  color: var(--error-color);
+}
+
+/* =========================================
+   11. PASSWORD
+========================================= */
+
+.password-group input {
+  padding-right: 52px;
+}
+
+.password-toggle {
+  position: absolute;
+
+  right: 15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--text-light);
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  transition: var(--transition);
+}
+
+.password-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* =========================================
+   12. PASSWORD RULES
+========================================= */
+
+.password-rules {
+  margin-top: -8px;
+  margin-bottom: 25px;
+
+  padding: 15px;
+
+  background-color: #f8fafc;
+
+  border-radius: 10px;
+}
+
+.password-rules p {
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: var(--text-color);
+
+  margin-bottom: 10px;
+}
+
+.password-rules ul {
+  list-style: none;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+}
+
+.password-rules li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 12px;
+
+  color: var(--text-light);
+
+  transition: var(--transition);
+}
+
+.password-rules li i {
+  font-size: 12px;
+}
+
+/* Valid Rule */
+
+.password-rules li.valid {
+  color: var(--success-color);
+}
+
+.password-rules li.valid i::before {
+  content: "\f058";
+}
+
+/* =========================================
+   13. PASSWORD STRENGTH
+========================================= */
+
+.password-strength {
+  margin-bottom: 25px;
+}
+
+.strength-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 8px;
+
+  font-size: 12px;
+}
+
+.strength-header span:first-child {
+  color: var(--text-light);
+}
+
+#strengthText {
+  font-weight: 600;
+}
+
+.strength-bar {
+  width: 100%;
+  height: 6px;
+
+  background-color: #e2e8f0;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+#strengthProgress {
+  display: block;
+
+  width: 0;
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition: width 0.3s ease;
+}
+
+/* =========================================
+   14. FORM NAVIGATION
+========================================= */
+
+.form-navigation {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 18px;
+}
+
+.btn {
+  min-height: 42px;
+
+  padding: 0 18px;
+
+  border-radius: 10px;
+
+  border: none;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  transition: var(--transition);
+}
+
+/* Back Button */
+
+.btn-back {
+  background-color: transparent;
+
+  color: var(--text-light);
+
+  border: 1px solid var(--border-color);
+}
+
+.btn-back:hover {
+  background-color: #f8fafc;
+
+  color: var(--text-color);
+}
+
+/* Next Button */
+
+.btn-next {
+  margin-left: auto;
+
+  background-color: var(--primary-color);
+
+  color: var(--white);
+}
+
+.btn-next:hover {
+  background-color: var(--primary-dark);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   15. CONFIRMATION
+========================================= */
+
+.confirmation-section {
+  border: 1px solid #e2e8f0;
+
+  border-radius: 12px;
+
+  margin-bottom: 18px;
+
+  overflow: hidden;
+}
+
+.confirmation-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 15px 18px;
+
+  background-color: #f8fafc;
+}
+
+.confirmation-header h3 {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: var(--text-color);
+}
+
+.edit-button {
+  border: none;
+
+  background: transparent;
+
+  color: var(--primary-color);
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+.edit-button:hover {
+  color: var(--primary-dark);
+}
+
+.confirmation-content {
+  padding: 16px 18px;
+}
+
+.confirmation-item {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 8px 0;
+
+  font-size: 13px;
+}
+
+.confirmation-item span {
+  color: var(--text-light);
+}
+
+.confirmation-item strong {
+  color: var(--text-color);
+
+  font-weight: 500;
+
+  text-align: right;
+
+  word-break: break-word;
+}
+
+/* =========================================
+   16. LOADING SCREEN
+========================================= */
+
+.loading-screen {
+  position: absolute;
+
+  inset: 0;
+
+  background-color: rgba(255, 255, 255, 0.96);
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 20;
+}
+
+.loading-screen.active {
+  display: flex;
+}
+
+.loading-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 18px;
+}
+
+.loading-content p {
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: var(--text-color);
+}
+
+/* Spinner */
+
+.spinner {
+  width: 42px;
+  height: 42px;
+
+  border: 4px solid #dbeafe;
+
+  border-top-color: var(--primary-color);
+
+  border-radius: 50%;
+
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   17. SUCCESS SCREEN
+========================================= */
+
+.success-screen {
+  display: none;
+
+  min-height: 400px;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+.success-screen.active {
+  display: flex;
+
+  animation: successFade 0.5s ease;
+}
+
+@keyframes successFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Success Icon */
+
+.success-icon {
+  width: 75px;
+  height: 75px;
+
+  border-radius: 50%;
+
+  background-color: #dcfce7;
+
+  color: var(--success-color);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 32px;
+
+  margin-bottom: 25px;
+
+  animation: successPop 0.5s ease;
+}
+
+@keyframes successPop {
+  0% {
+    transform: scale(0);
+  }
+
+  70% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.success-screen h2 {
+  font-size: 24px;
+
+  font-weight: 700;
+
+  color: var(--text-color);
+
+  margin-bottom: 10px;
+}
+
+.success-screen p {
+  font-size: 14px;
+
+  color: var(--text-light);
+
+  margin-bottom: 28px;
+}
+
+.btn-continue {
+  background-color: var(--primary-color);
+
+  color: var(--white);
+}
+
+.btn-continue:hover {
+  background-color: var(--primary-dark);
+
+  transform: translateY(-1px);
+
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
+}
+
+/* =========================================
+   18. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 650px) {
+  body {
+    padding: 15px;
+  }
+
+  .form-card {
+    padding: 28px 22px;
+  }
+
+  .form-header h1 {
+    font-size: 24px;
+  }
+
+  .progress-label {
+    font-size: 10px;
+  }
+
+  .progress-circle {
+    width: 34px;
+    height: 34px;
+
+    font-size: 12px;
+  }
+
+  .progress-line {
+    margin-top: 17px;
+  }
+
+  .password-rules ul {
+    grid-template-columns: 1fr;
+  }
+
+  .confirmation-item {
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+  .confirmation-item strong {
+    text-align: left;
+  }
+}
+
+@media (max-width: 430px) {
+  body {
+    padding: 10px;
+  }
+
+  .form-card {
+    padding: 25px 18px;
+
+    border-radius: 12px;
+  }
+
+  .form-header {
+    margin-bottom: 28px;
+  }
+
+  .form-header h1 {
+    font-size: 22px;
+  }
+
+  .progress-label {
+    display: none;
+  }
+
+  .progress-circle {
+    width: 32px;
+    height: 32px;
+  }
+
+  .progress-line {
+    margin-top: 16px;
+  }
+
+  .step-header h2 {
+    font-size: 19px;
+  }
+
+  .form-navigation {
+    margin-top: 28px;
+  }
+
+  .btn {
+    padding: 0 15px;
+  }
+}
+/* =========================================
+   PERSIAN DATE PICKER
+========================================= */
+
+.jalali-date-group {
+  position: relative;
+}
+
+/* Calendar Button */
+
+.calendar-toggle {
+  position: absolute;
+
+  right: 15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--text-light);
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  z-index: 3;
+
+  transition: var(--transition);
+}
+
+.calendar-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* Input */
+
+.jalali-date-group input {
+  cursor: pointer;
+
+  padding-right: 48px;
+}
+
+/* Calendar */
+
+.persian-calendar {
+  position: absolute;
+
+  bottom: calc(100% + 8px);
+  left: 0;
+
+  width: 310px;
+
+  padding: 18px;
+
+  background-color: var(--white);
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 15px 35px rgba(15, 23, 42, 0.12),
+    0 5px 15px rgba(15, 23, 42, 0.06);
+
+  z-index: 50;
+
+  display: none;
+
+  animation: calendarFade 0.2s ease;
+}
+
+.persian-calendar.active {
+  display: block;
+}
+
+@keyframes calendarFade {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Calendar Header */
+
+.calendar-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.calendar-header button {
+  width: 32px;
+  height: 32px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+.calendar-title-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.calendar-title {
+  border: none;
+  background: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  min-width: 0;
+  padding: 0 6px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: var(--text-color);
+
+  cursor: pointer;
+
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.calendar-title:hover {
+  color: var(--primary-color);
+}
+
+.calendar-year-title {
+  color: black;
+  flex-shrink: 0;
+}
+
+.calendar-month-title {
+  flex-shrink: 0;
+  width: auto;
+}
+
+/* Weekdays */
+
+.calendar-weekdays {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  margin-bottom: 8px;
+}
+
+.calendar-weekdays span {
+  text-align: center;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  color: var(--text-light);
+}
+
+/* Days */
+
+.calendar-days {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 5px;
+}
+
+.calendar-days.year-picker-mode {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.calendar-days.month-picker-mode {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.calendar-day {
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 8px;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--text-color);
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+.calendar-day.year-option {
+  height: 38px;
+  font-size: 13px;
+  min-width: 0;
+}
+
+.calendar-day.year-option.selected {
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.calendar-day.month-option {
+  height: 38px;
+  font-size: 12px;
+}
+
+.calendar-day:hover {
+  background-color: var(--primary-light);
+
+  color: var(--primary-color);
+}
+
+.calendar-day.selected {
+  background-color: var(--primary-color);
+
+  color: var(--white);
+
+  font-weight: 600;
+}
+
+.calendar-day.today {
+  border: 1px solid var(--primary-color);
+
+  color: var(--primary-color);
+}
+
+.calendar-day.selected.today {
+  background-color: var(--primary-color);
+
+  color: var(--white);
+}
+
+/* Empty days */
+
+.calendar-day.empty {
+  cursor: default;
+}
+
+.calendar-day.empty:hover {
+  background-color: transparent;
+}
+
+/* Mobile */
+
+@media (max-width: 430px) {
+  .persian-calendar {
+    width: 100%;
+
+    left: 0;
+  }
+}

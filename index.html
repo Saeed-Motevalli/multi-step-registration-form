@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Registration Form</title>
+
+    <!-- Google Font - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="icon" href="./assets/favicon/Blue.webp" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <main class="form-container">
+      <div class="form-card">
+        <!-- ================================= -->
+        <!-- HEADER -->
+        <!-- ================================= -->
+
+        <div class="form-header">
+          <h1>Create Account</h1>
+        </div>
+
+        <!-- ================================= -->
+        <!-- PROGRESS INDICATOR -->
+        <!-- ================================= -->
+
+        <div class="progress-container">
+          <!-- Step 1 -->
+
+          <div class="progress-step active" data-step="1">
+            <div class="progress-circle">
+              <span>1</span>
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <span class="progress-label"> Personal </span>
+          </div>
+
+          <!-- Progress Line -->
+
+          <div class="progress-line"></div>
+
+          <!-- Step 2 -->
+
+          <div class="progress-step" data-step="2">
+            <div class="progress-circle">
+              <span>2</span>
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <span class="progress-label"> Account </span>
+          </div>
+
+          <!-- Progress Line -->
+
+          <div class="progress-line"></div>
+
+          <!-- Step 3 -->
+
+          <div class="progress-step" data-step="3">
+            <div class="progress-circle">
+              <span>3</span>
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <span class="progress-label"> Security </span>
+          </div>
+
+          <!-- Progress Line -->
+
+          <div class="progress-line"></div>
+
+          <!-- Step 4 -->
+
+          <div class="progress-step" data-step="4">
+            <div class="progress-circle">
+              <span>4</span>
+              <i class="fa-solid fa-check"></i>
+            </div>
+
+            <span class="progress-label"> Finish </span>
+          </div>
+        </div>
+
+        <!-- ================================= -->
+        <!-- FORM -->
+        <!-- ================================= -->
+
+        <form id="registrationForm" novalidate>
+          <!-- ================================= -->
+          <!-- STEP 1 - PERSONAL INFORMATION -->
+          <!-- ================================= -->
+
+          <section class="form-step active" data-step="1">
+            <div class="step-header">
+              <h2>Personal Information</h2>
+            </div>
+
+            <!-- First Name -->
+
+            <div class="input-group">
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                autocomplete="given-name"
+                placeholder=" "
+              />
+
+              <label for="firstName"> First Name </label>
+            </div>
+
+            <!-- Last Name -->
+
+            <div class="input-group">
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                autocomplete="family-name"
+                placeholder=" "
+              />
+
+              <label for="lastName"> Last Name </label>
+            </div>
+
+            <!-- Phone -->
+
+            <div class="input-group">
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                autocomplete="tel"
+                placeholder=" "
+              />
+
+              <label for="phone"> Phone Number </label>
+            </div>
+
+            <!-- Date of Birth -->
+
+            <div class="input-group jalali-date-group">
+              <input
+                type="text"
+                id="dateOfBirth"
+                name="dateOfBirth"
+                placeholder=" "
+                readonly
+              />
+
+              <label for="dateOfBirth"> Date of Birth </label>
+
+              <button
+                type="button"
+                class="calendar-toggle"
+                id="calendarToggle"
+                aria-label="Open calendar"
+              >
+                <i class="fa-regular fa-calendar"></i>
+              </button>
+
+              <!-- Persian Calendar -->
+
+              <div class="persian-calendar" id="persianCalendar">
+                <div class="calendar-header">
+                  <button type="button" id="previousMonth">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </button>
+
+                  <div class="calendar-title-group">
+                    <button
+                      type="button"
+                      id="calendarMonthTitle"
+                      class="calendar-title calendar-month-title"
+                    >
+                      مرداد
+                    </button>
+
+                    <button
+                      type="button"
+                      id="calendarYearTitle"
+                      class="calendar-title calendar-year-title"
+                    >
+                      ۱۴۰۵
+                    </button>
+                  </div>
+
+                  <button type="button" id="nextMonth">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </button>
+                </div>
+
+                <div class="calendar-weekdays">
+                  <span>ش</span>
+                  <span>ی</span>
+                  <span>د</span>
+                  <span>س</span>
+                  <span>چ</span>
+                  <span>پ</span>
+                  <span>ج</span>
+                </div>
+
+                <div class="calendar-days" id="calendarDays"></div>
+              </div>
+            </div>
+
+            <!-- Country -->
+
+            <div class="input-group select-group">
+              <div class="country-select" id="countrySelect">
+                <button
+                  type="button"
+                  class="country-select-trigger"
+                  id="countryTrigger"
+                  aria-haspopup="listbox"
+                  aria-expanded="false"
+                >
+                  <span id="countrySelectedText">Select your country</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+
+                <ul class="country-options" id="countryOptions" role="listbox">
+                  <li
+                    class="country-option is-selected"
+                    data-value=""
+                    role="option"
+                  >
+                    Select your country
+                  </li>
+                  <li class="country-option" data-value="iran" role="option">
+                    Iran
+                  </li>
+                  <li class="country-option" data-value="germany" role="option">
+                    Germany
+                  </li>
+                  <li
+                    class="country-option"
+                    data-value="united-states"
+                    role="option"
+                  >
+                    United States
+                  </li>
+                  <li
+                    class="country-option"
+                    data-value="united-kingdom"
+                    role="option"
+                  >
+                    United Kingdom
+                  </li>
+                  <li class="country-option" data-value="canada" role="option">
+                    Canada
+                  </li>
+                  <li
+                    class="country-option"
+                    data-value="australia"
+                    role="option"
+                  >
+                    Australia
+                  </li>
+                  <li class="country-option" data-value="france" role="option">
+                    France
+                  </li>
+                  <li class="country-option" data-value="italy" role="option">
+                    Italy
+                  </li>
+                  <li class="country-option" data-value="spain" role="option">
+                    Spain
+                  </li>
+                  <li class="country-option" data-value="japan" role="option">
+                    Japan
+                  </li>
+                </ul>
+              </div>
+
+              <select id="country" name="country" hidden>
+                <option value="" selected disabled>Select your country</option>
+
+                <option value="iran">Iran</option>
+
+                <option value="germany">Germany</option>
+
+                <option value="united-states">United States</option>
+
+                <option value="united-kingdom">United Kingdom</option>
+
+                <option value="canada">Canada</option>
+
+                <option value="australia">Australia</option>
+
+                <option value="france">France</option>
+
+                <option value="italy">Italy</option>
+
+                <option value="spain">Spain</option>
+
+                <option value="japan">Japan</option>
+              </select>
+
+              <label for="country"> Country </label>
+            </div>
+          </section>
+
+          <!-- ================================= -->
+          <!-- STEP 2 - ACCOUNT INFORMATION -->
+          <!-- ================================= -->
+
+          <section class="form-step" data-step="2">
+            <div class="step-header">
+              <h2>Account Information</h2>
+            </div>
+
+            <!-- Email -->
+
+            <div class="input-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                placeholder=" "
+              />
+
+              <label for="email"> Email Address </label>
+            </div>
+
+            <!-- Username -->
+
+            <div class="input-group">
+              <input
+                type="text"
+                id="username"
+                name="username"
+                autocomplete="username"
+                placeholder=" "
+              />
+
+              <label for="username"> Username </label>
+            </div>
+          </section>
+
+          <!-- ================================= -->
+          <!-- STEP 3 - SECURITY -->
+          <!-- ================================= -->
+
+          <section class="form-step" data-step="3">
+            <div class="step-header">
+              <h2>Security</h2>
+            </div>
+
+            <!-- Password -->
+
+            <div class="input-group password-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                autocomplete="new-password"
+                placeholder=" "
+              />
+
+              <label for="password"> Password </label>
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="togglePassword"
+                aria-label="Show password"
+              >
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+
+            <!-- Password Rules -->
+
+            <div class="password-rules">
+              <p>Password must contain:</p>
+
+              <ul>
+                <li id="rule-length">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                  <span>At least 8 characters</span>
+                </li>
+
+                <li id="rule-uppercase">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                  <span>One uppercase letter</span>
+                </li>
+
+                <li id="rule-lowercase">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                  <span>One lowercase letter</span>
+                </li>
+
+                <li id="rule-number">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                  <span>One number</span>
+                </li>
+
+                <li id="rule-special">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                  <span>One special character</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Password Strength -->
+
+            <div class="password-strength">
+              <div class="strength-header">
+                <span>Password Strength</span>
+
+                <span id="strengthText"> Weak </span>
+              </div>
+
+              <div class="strength-bar">
+                <span id="strengthProgress"></span>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+
+            <div class="input-group password-group">
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                autocomplete="new-password"
+                placeholder=" "
+              />
+
+              <label for="confirmPassword"> Confirm Password </label>
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="toggleConfirmPassword"
+                aria-label="Show password"
+              >
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+          </section>
+
+          <!-- ================================= -->
+          <!-- STEP 4 - CONFIRMATION -->
+          <!-- ================================= -->
+
+          <section class="form-step" data-step="4">
+            <div class="step-header">
+              <h2>Confirmation</h2>
+            </div>
+
+            <!-- Personal Information -->
+
+            <div class="confirmation-section">
+              <div class="confirmation-header">
+                <h3>Personal Information</h3>
+
+                <button type="button" class="edit-button" data-edit="1">
+                  <i class="fa-solid fa-pen"></i>
+                  Edit
+                </button>
+              </div>
+
+              <div class="confirmation-content">
+                <div class="confirmation-item">
+                  <span>First Name</span>
+                  <strong id="confirmFirstName">—</strong>
+                </div>
+
+                <div class="confirmation-item">
+                  <span>Last Name</span>
+                  <strong id="confirmLastName">—</strong>
+                </div>
+
+                <div class="confirmation-item">
+                  <span>Phone</span>
+                  <strong id="confirmPhone">—</strong>
+                </div>
+
+                <div class="confirmation-item">
+                  <span>Date of Birth</span>
+                  <strong id="confirmDateOfBirth">—</strong>
+                </div>
+
+                <div class="confirmation-item">
+                  <span>Country</span>
+                  <strong id="confirmCountry">—</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Account Information -->
+
+            <div class="confirmation-section">
+              <div class="confirmation-header">
+                <h3>Account Information</h3>
+
+                <button type="button" class="edit-button" data-edit="2">
+                  <i class="fa-solid fa-pen"></i>
+                  Edit
+                </button>
+              </div>
+
+              <div class="confirmation-content">
+                <div class="confirmation-item">
+                  <span>Email</span>
+                  <strong id="confirmEmail">—</strong>
+                </div>
+
+                <div class="confirmation-item">
+                  <span>Username</span>
+                  <strong id="confirmUsername">—</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Security -->
+
+            <div class="confirmation-section">
+              <div class="confirmation-header">
+                <h3>Security</h3>
+
+                <button type="button" class="edit-button" data-edit="3">
+                  <i class="fa-solid fa-pen"></i>
+                  Edit
+                </button>
+              </div>
+
+              <div class="confirmation-content">
+                <div class="confirmation-item">
+                  <span>Password</span>
+
+                  <strong id="confirmPasswordText"> •••••••• </strong>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================================= -->
+          <!-- NAVIGATION BUTTONS -->
+          <!-- ================================= -->
+
+          <div class="form-navigation">
+            <button type="button" class="btn btn-back" id="backButton">
+              <i class="fa-solid fa-arrow-left"></i>
+
+              <span>Back</span>
+            </button>
+
+            <button type="button" class="btn btn-next" id="nextButton">
+              <span>Next</span>
+
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+
+        <!-- ================================= -->
+        <!-- LOADING -->
+        <!-- ================================= -->
+
+        <div class="loading-screen" id="loadingScreen">
+          <div class="loading-content">
+            <div class="spinner"></div>
+
+            <p>Creating Account...</p>
+          </div>
+        </div>
+
+        <!-- ================================= -->
+        <!-- SUCCESS SCREEN -->
+        <!-- ================================= -->
+
+        <div class="success-screen" id="successScreen">
+          <div class="success-icon">
+            <i class="fa-solid fa-check"></i>
+          </div>
+
+          <h2>Registration Successful!</h2>
+
+          <p>Your account has been created successfully.</p>
+
+          <button type="button" class="btn btn-continue" id="continueButton">
+            Continue
+
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
